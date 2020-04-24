@@ -11,6 +11,7 @@ dist
 
 # folder
 src/
+example/
 
 # misc
 .DS_Store

@@ -13,7 +13,7 @@ npm install react-dipay
 ```jsx
 import React, { useState } from 'react'
 import { DipayLogin } from 'react-dipay'
-import 'react-dipay/dist/index.css'
+import 'react-dipay/dist/index.css' // Import style in your Root file such as <App>
 
 const App = () => {
   const [open, setOpen] = useState(false);
