@@ -54,12 +54,13 @@ export default App
 ```
 
 ## `DipayLogin` Props
-| Key | Required | Type| Description
+| Key | Required | Type | Description
 | --- | -------- | ---- | ----------- |
 | `clientId` | `true` | `string` | As credential to integrate with Dipay
 | `open` | `true` | `boolean` | Control whether the menu is open
 | `onClose` | `true` | `function` | Subscribe to close events
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
+| `dev` | `false` | `boolean` | Set development mode<br>Default from `process.env.NODE_ENV` or `true`
 
 ## `DipayPay` Props
 | Key | Required | Type | Description
@@ -71,6 +72,7 @@ export default App
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
 | `productCode` | `true` | `string` | Product code / id to be saved in Dipay
 | `amount` | `true` | `number` | Amount to be paid
+| `dev` | `false` | `boolean` | Set development mode<br>Default from `process.env.NODE_ENV` or `true`
 
 
 ## License
