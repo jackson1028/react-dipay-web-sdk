@@ -18,13 +18,23 @@ import 'react-dipay/dist/index.css'
 ## Example
 
 ```jsx
-import React, { useState } from 'react'
-import { DipayLogin, DipayPay } from 'react-dipay'
+import React, { useState, useEffect } from 'react'
+import { DipayLogin, DipayPay, getUser } from 'react-dipay'
 import 'react-dipay/dist/index.css' // Import style in your Root file such as <App>
 
 const App = () => {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+
+  useEffect(() => {
+    getUser("{YOUR_CLIENT_ID}}", "{SECRET_KEY}")
+      .then(res => {
+        console.log('Get User Success', res)
+      })
+      .catch(err => {
+        console.log('Get User Error', err)
+      })
+  }, [])
   
   return (
     <div>
@@ -53,16 +63,19 @@ export default App
 
 ```
 
-## `DipayLogin` Props
+
+## Component
+
+### `DipayLogin` Props
 | Key | Required | Type | Description
 | --- | -------- | ---- | ----------- |
 | `clientId` | `true` | `string` | As credential to integrate with Dipay
 | `open` | `true` | `boolean` | Control whether the menu is open
 | `onClose` | `true` | `function` | Subscribe to close events
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
-| `dev` | `false` | `boolean` | Set development mode<br>Default from `process.env.NODE_ENV` or `true`
+| `dev` | `false` | `boolean` | Set development mode<br>Default `process.env.NODE_ENV` or `true`
 
-## `DipayPay` Props
+### `DipayPay` Props
 | Key | Required | Type | Description
 | --- | -------- | ---- | ----------- |
 | `clientId` | `true` | `string` | As credential to integrate with Dipay
@@ -72,7 +85,14 @@ export default App
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
 | `productCode` | `true` | `string` | Product code / id to be saved in Dipay
 | `amount` | `true` | `number` | Amount to be paid
-| `dev` | `false` | `boolean` | Set development mode<br>Default from `process.env.NODE_ENV` or `true`
+| `dev` | `false` | `boolean` | Set development mode<br>Default `process.env.NODE_ENV` or `true`
+
+
+## Methods
+
+| Name | Return | Description
+| ---- | ------ | ----------- |
+| `getUser(clientId, secretKey, dev)` | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) | Get user data<br>`dev` default value `process.env.NODE_ENV` or `true`
 
 
 ## License
