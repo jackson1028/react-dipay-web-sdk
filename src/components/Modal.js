@@ -34,11 +34,11 @@ const Modal = ({ in: inProp, onClose, children }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", onEscKeyDown, false);
+    if (inProp) window.addEventListener("keydown", onEscKeyDown, false);
     return () => {
-      window.removeEventListener("keydown", onEscKeyDown, false);
+      if (inProp) window.removeEventListener("keydown", onEscKeyDown, false);
     }
-  }, [])
+  }, [inProp])
 
   return ReactDOM.createPortal(
     <Transition in={inProp} timeout={duration} mountOnEnter onEnter={node => node.offsetHeight}>
