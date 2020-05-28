@@ -1,0 +1,151 @@
+.OTPRoot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.OTPWrapper {
+  position: relative;
+}
+
+.OTPInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.OTPInput:focus {
+  outline: unset;
+}
+
+.OTPMaskInputContainer {
+  display: inline-flex;
+  align-items: center;
+}
+
+.OTPMask {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+}
+
+.OTPValue {
+  min-width: 64px;
+  max-width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e5ea;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+  position: relative;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.OTPValue:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.OTPWrapper:focus-within .OTPValue.OTPValueActive,
+.OTPMaskFocus > .OTPValue.OTPValueActive {
+  border: 2px solid #1877f2;
+}
+
+.OTPWrapper:focus-within .OTPValue.OTPValueActive:empty::before,
+.OTPMaskFocus > .OTPValue.OTPValueActive:empty::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 1px;
+  height: 26px;
+  background: #000;
+  -webkit-animation: blink 1000ms step-end infinite;
+  -moz-animation: blink 1000ms step-end infinite;
+  -ms-animation: blink 1000ms step-end infinite;
+  -o-animation: blink 1000ms step-end infinite;
+  animation: blink 1000ms step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.OTPMaskError > .OTPValue {
+  border: 1px solid #ff3b30;
+}
+
+.OTPMaskLoading > .OTPValue {
+}
+
+.OTPLoading {
+  display: inline-flex;
+  margin-left: 1rem;
+}
+
+p.helperText {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #ff3b30;
+}

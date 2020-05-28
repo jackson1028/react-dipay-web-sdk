@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500&display=swap');
+
+.modalRoot,
+.modalRoot *,
+.modalRoot :after,
+.modalRoot :before {
+  box-sizing: border-box;
+}
+
+.modalRoot p,
+.modalRoot h1,
+.modalRoot h2,
+.modalRoot h3,
+.modalRoot h4,
+.modalRoot h5,
+.modalRoot h6 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.modalRoot a {
+  color: #1877f2;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.modalRoot a:hover {
+  text-decoration: underline;
+}
+
+.modalRoot {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.375;
+  color: #000;
+}
+
+.modalBackdrop {
+  background-color: rgba(1, 17, 24, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modalBody {
+  width: 100%;
+  max-width: 568px;
+  position: relative;
+  padding: 0 14px;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  right: 30px;
+  top: 16px;
+  background: unset;
+  border: unset;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 26px 14px;
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  .modalContent {
+    padding: 26px 26px
+  }
+}
+
+.modalTitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  color: #000;
+  display: block;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 16px 30px;
+  line-height: 1.4;
+  border-radius: 4px;
+  -webkit-transition: color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(24,119,242,.25);
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: .65;
+}
+
+.btn:hover,
+a.btn:hover {
+  text-decoration: none;
+}
+
+.btnPrimary {
+  color: #fff;
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+
+.btnPrimary.focus, 
+.btnPrimary:focus,
+.btnPrimary:hover {
+  color: #fff;
+  background-color: #0c65d8;
+  border-color: #0b5fcc;
+}
+
+.btnPrimary:not(:disabled):not(.disabled).active,
+.btnPrimary:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #0b5fcc;
+  border-color: #0b5abf;
+}
+
+.btnPrimary.focus,
+.btnPrimary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(59,139,244,.5);
+}
+
+.btnOutlinePrimary {
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+.btnOutlinePrimary:hover {
+  color: #fff;
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+
+.btnOutlinePrimary.focus,
+.btnOutlinePrimary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(24,119,242,.5);
+}
+
+.btnOutlinePrimary:not(:disabled):not(.disabled).active,
+.btnOutlinePrimary:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+
+.btnOutlinePrimary:not(:disabled):not(.disabled).active:focus,
+.btnOutlinePrimary:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(24,119,242,.5);
+}
+
+
+.btnLoading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center
+}
+
+.btnProgressWrapper {
+  margin-right: 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.spinnerRoot {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  animation: spinnerRotate 1.4s linear infinite;
+}
+
+.spinnerSvg {
+  display: block;
+}
+
+.spinnerCircle {
+  animation: spinnerDash 1.4s ease-in-out infinite;
+  stroke: currentColor;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0px;
+}
+
+@keyframes spinnerRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinnerDash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.fontWeightMedium {
+  font-weight: 500;
+}
+
+.textPrimary {
+  color: #1877f2;
+}
+
+.loadingRoot {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1877f2;
+}
+
+.checkIcon {
+  margin: 32px 0 22px;
+}
+
+.btnClose {
+  margin-top: 32px;
+}

@@ -10,8 +10,6 @@ dist
 .rpt2_cache
 
 # folder
-src/
-example/
 
 # misc
 .DS_Store
