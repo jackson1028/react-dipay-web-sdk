@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin: 32px 0 38px;
+  position: relative;
 }
 
 .PINWrapper {
@@ -23,6 +24,7 @@
 .PINMaskInputContainer {
   display: inline-flex;
   align-items: center;
+  position: relative;
 }
 
 .PINMask {
@@ -39,7 +41,7 @@
   justify-content: center;
 }
 
-.PINValue div {
+.PINValue .dot {
   width: 12px;
   height: 2px;
   border-radius: 50px;
@@ -47,26 +49,47 @@
   transition: background-color 150ms ease-in-out, height 150ms ease-in-out;
 }
 
+.PINValue .value {
+  font-size: 24px;
+  font-weight: 500;
+  border-bottom: 2px solid #8e8e93;
+  min-width: 30px;
+  min-height: 42px;
+  display: none;
+}
+
 .PINValue:not(:last-child) {
   margin-right: 1rem;
 }
 
-.PINWrapper:focus-within .PINValue.PINValueActive:not(.PINHasValue) div,
-.PINMaskFocus > .PINValue.PINValueActive:not(.PINHasValue) div {
+.PINWrapper:focus-within .PINValue.PINValueActive:not(.PINHasValue) .dot,
+.PINMaskFocus>.PINValue.PINValueActive:not(.PINHasValue) .dot {
   background-color: #1877f2;
 }
 
-.PINValue.PINHasValue div {
+.PINWrapper:focus-within .PINValue.PINValueActive:not(.PINHasValue) .value,
+.PINMaskFocus>.PINValue.PINValueActive:not(.PINHasValue) .value {
+  border-color: #1877f2;
+}
+
+.PINValue.PINHasValue .dot {
   height: 12px;
   background-color: #000;
 }
 
-.PINMaskError > .PINValue div {
+.PINValue.PINHasValue .value {
+  border-color: #000;
+}
+
+.PINMaskError>.PINValue .dot {
   background-color: #ff3b30;
 }
 
-.PINMaskLoading > .PINValue {
+.PINMaskError>.PINValue .value {
+  border-color: #ff3b30;
 }
+
+.PINMaskLoading>.PINValue {}
 
 .PINLoading {
   display: inline-flex;
@@ -78,4 +101,31 @@ p.helperText {
   margin-bottom: 0;
   font-size: 0.875rem;
   color: #ff3b30;
+}
+
+.showPIN .PINValue .dot {
+  display: none;
+}
+
+.showPIN .PINValue .value {
+  display: inline-block
+}
+
+.showToggler {
+  position: absolute;
+  z-index: 1;
+  background: unset;
+  padding: 4px;
+  border: unset;
+  display: inline-flex;
+  right: 60px;
+  top: 16px;
+  color: #000;
+  opacity: .5;
+  transition: opacity 120ms ease-in-out;
+  cursor: pointer;
+}
+
+.showToggler:hover {
+  opacity: .9;
 }

@@ -8,6 +8,7 @@ const numberRegex = /^[0-9]*$/;
 
 const PINComponent = ({ pay, onSuccess, productCode, amount }) => {
   const [PIN, setPIN] = useState("");
+  const [showPIN, setShowPIN] = useState(false);
   const [error, setError] = useState();
   const [validated, setValidated] = useState(false);
   const [process, setProcess] = useState(false);
@@ -76,6 +77,8 @@ const PINComponent = ({ pay, onSuccess, productCode, amount }) => {
           loading={process}
           error={error}
           ref={inputRef}
+          show={showPIN}
+          setShow={e => setShowPIN(!showPIN)}
         />
         <LoadingButton loading={process} className={`${rootStyle.btn} ${rootStyle.btnPrimary} ${styles.btnBayar}`}>Bayar</LoadingButton>
       </form>
