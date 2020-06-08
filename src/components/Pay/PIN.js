@@ -14,16 +14,21 @@ const PINComponent = ({ pay, onSuccess, productCode, amount }) => {
   const [process, setProcess] = useState(false);
   const inputRef = useRef(null);
 
+  const handleError = v => {
+    setError(v)
+    if (v && inputRef.current) inputRef.current.focus();
+  }
+
   const validate = (PIN) => {
     setValidated(true);
     if (!PIN) {
-      setError("PIN tidak boleh kosong")
+      handleError("PIN tidak boleh kosong")
     } else if (!PIN.match(numberRegex)) {
-      setError("PIN hanya boleh berisi angka")
+      handleError("PIN hanya boleh berisi angka")
     } else if (PIN.length != 6) {
-      setError("PIN harus 6 angka")
+      handleError("PIN harus 6 angka")
     } else {
-      setError(undefined)
+      handleError(undefined)
       return true
     }
   }
@@ -55,7 +60,7 @@ const PINComponent = ({ pay, onSuccess, productCode, amount }) => {
           } else {
             setPIN('');
             inputRef.current.focus();
-            setError(res.message || "")
+            handleError(res.message || "Something Went Wrong")
           }
         })
     }

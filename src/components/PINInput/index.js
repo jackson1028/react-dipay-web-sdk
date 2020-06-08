@@ -1,24 +1,24 @@
 import React, { useEffect, forwardRef, useRef } from 'react';
 import styles from './pin.module.css';
 
-function setCaretPosition(ctrl, pos) {
+function setCaretPosition(ctrl) {
   // Modern browsers
   if (ctrl.setSelectionRange) {
     ctrl.focus();
-    ctrl.setSelectionRange(pos, pos);
+    ctrl.setSelectionRange(10, 10);
 
     // IE8 and below
   } else if (ctrl.createTextRange) {
     var range = ctrl.createTextRange();
     range.collapse(true);
-    range.moveEnd('character', pos);
-    range.moveStart('character', pos);
+    range.moveEnd('character', 10);
+    range.moveStart('character', 10);
     range.select();
   }
 }
 
-function disableArrowKeys(e) {
-  if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+function disableKeys(e) {
+  if ([16, 17, 18, 32, 35, 36, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
     e.preventDefault();
   }
 }
@@ -36,26 +36,24 @@ const PINInput = forwardRef(({
   setShow
 }, ref) => {
   const input = useRef(null);
+  const pinMaskRef = useRef(null);
 
   const handleChange = e => {
-    const v = e.target.value;
-    if (numberOnly && !v.match(/^[0-9]*$/g)) return;
-    const wrapper = document.getElementById("PINMask");
-    wrapper.classList.remove(styles.PINMaskError);
-    onChange(v);
+    const { target, target: { value } } = e;
+    if (numberOnly && !value.match(/^[0-9]*$/g)) return;
+    if (pinMaskRef.current) pinMaskRef.current.classList.remove(styles.PINMaskError);
+    onChange(value);
+    setCaretPosition(target);
   }
 
   const handleFocus = e => {
-    const target = e.currentTarget;
-    const index = target.value.length;
-    const wrapper = document.getElementById("PINMask");
-    wrapper.classList.add(styles.PINMaskFocus);
-    setCaretPosition(target, index);
+    const target = e.target;
+    if (pinMaskRef.current) pinMaskRef.current.classList.add(styles.PINMaskFocus);
+    setCaretPosition(target);
   }
 
   const handleBlur = e => {
-    const wrapper = document.getElementById("PINMask");
-    wrapper.classList.remove(styles.PINMaskFocus);
+    if (pinMaskRef.current) pinMaskRef.current.classList.remove(styles.PINMaskFocus);
   }
 
   const renderMask = () => {
@@ -71,26 +69,26 @@ const PINInput = forwardRef(({
     return view
   }
 
-  const handleClick = () => {
+  const focusInput = () => {
     if (input.current) input.current.focus()
   }
 
   const handleVisibleChange = () => {
     if (typeof setShow === 'function') setShow();
-    if (input.current) input.current.focus()
+    focusInput()
   }
 
   useEffect(() => {
-    if (input.current) input.current.addEventListener("keydown", disableArrowKeys);
-    if (input.current && autoFocus) input.current.focus();
+    if (autoFocus) focusInput();
+    if (input.current) input.current.addEventListener("keydown", disableKeys);
     return () => {
-      if (input.current) input.current.removeEventListener("keydown", disableArrowKeys);
+      if (input.current) input.current.removeEventListener("keydown", disableKeys);
     }
   }, [])
 
   return (
-    <div className={`${styles.PINRoot}${show ? ` ${styles.showPIN}` : ''}`}>
-      <div className={styles.PINWrapper} id="PINWrapper">
+    <div className={styles.PINRoot}>
+      <div className={styles.PINWrapper}>
         <input
           className={styles.PINInput}
           type="password"
@@ -107,22 +105,22 @@ const PINInput = forwardRef(({
             input.current = r;
           }}
         />
-        <div className={styles.PINMaskInputContainer}>
+        <div className={`${styles.PINMaskInputContainer}${show ? ` ${styles.showPIN}` : ''}`}>
           <div
             className={`${styles.PINMask}${error ? ' ' + styles.PINMaskError : ''}${loading ? ' ' + styles.PINMaskLoading : ''}`}
-            id="PINMask"
-            onClick={handleClick}
+            ref={pinMaskRef}
+            onClick={focusInput}
           >
             {renderMask()}
           </div>
+          <button tabIndex="-1" type="button" className={styles.showToggler} onClick={handleVisibleChange}>
+            <VisibleIcon size={24} show={show} />
+          </button>
         </div>
         {error &&
           <p className={styles.helperText}>{error}</p>
         }
       </div>
-      <button tabIndex="-1" type="button" className={styles.showToggler} onClick={handleVisibleChange}>
-        <VisibleIcon size={24} show={show} />
-      </button>
     </div>
   )
 })
