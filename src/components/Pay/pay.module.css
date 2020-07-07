@@ -1,3 +1,32 @@
 .btnClose {
   margin-top: 32px;
 }
+
+.infoWrapper {
+  margin: 40px 0;
+}
+
+hr {
+  margin: 24px 0;
+  border: 1px dashed #E5E5EA;
+}
+
+.blockInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.blockInfo p {
+  margin: 0;
+}
+
+.btnCancel {
+  margin-top: 16px;
+  color: #1877f2;
+  padding: 8px 30px;
+}
+
+.btnCancel:hover {
+  color: #0c65d8;
+}

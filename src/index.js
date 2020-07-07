@@ -146,11 +146,27 @@ export const DipayPay = ({ clientId, dev: overwriteDev, open, onClose, onSuccess
     return res.json();
   }
 
+  const getConfirmationData = async () => {
+    const res = await fetch(`${endPoint}/integration/confirmation`, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-client-id': clientId,
+        'x-secret-key': userKey,
+      },
+    })
+    return res.json();
+  }
+
   return (
-    <Modal in={open} onClose={onClose}>
+    <Modal in={open} onClose={onClose} unmountOnExit={true}>
       <CheckCredential checkCredential={checkCredential} withUser dev={dev} onClose={onClose}>
         <Pay
           pay={pay}
+          getConfirmationData={getConfirmationData}
           onClose={onClose}
           onSuccess={onSuccess}
           productCode={productCode}
@@ -179,7 +195,7 @@ export const getUser = (clientId, userKey = "", overwriteDev) => new Promise((re
     },
   }).then((response) => response.json())
     .then((res) => {
-      if (res.statusCode >= 200 && res.statusCode <=204) {
+      if (res.statusCode >= 200 && res.statusCode <= 204) {
         resolve(res?.data?.user);
       } else {
         reject(res?.message || "Terjadi Kesalahan")

@@ -21,7 +21,7 @@ const transitionStyles = {
   exited: { opacity: 0, visibility: "hidden", transition: `opacity ${duration.exit}ms ease-in-out` },
 };
 
-const Modal = ({ in: inProp, onClose, children }) => {
+const Modal = ({ in: inProp, onClose, children, unmountOnExit }) => {
   const body = document.body;
 
   const handleClose = () => {
@@ -41,7 +41,7 @@ const Modal = ({ in: inProp, onClose, children }) => {
   }, [inProp])
 
   return ReactDOM.createPortal(
-    <Transition in={inProp} timeout={duration} mountOnEnter onEnter={node => node.offsetHeight}>
+    <Transition in={inProp} timeout={duration} mountOnEnter onEnter={node => node.offsetHeight} unmountOnExit={unmountOnExit}>
       {state => (
         <div
           style={{
