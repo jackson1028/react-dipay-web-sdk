@@ -12,15 +12,15 @@ npm i react-dipay-web-sdk
 Then import styles to your app:
 ```jsx
 // Import style in Root Component such as <App>
-import 'react-dipay/dist/index.css'
+import 'react-dipay-web-sdk/dist/index.css'
 ```
 
 ## Example
 
 ```jsx
 import React, { useState, useEffect } from 'react'
-import { DipayLogin, DipayPay, getUser } from 'react-dipay'
-import 'react-dipay/dist/index.css' // Import style in your Root file such as <App>
+import { DipayLogin, DipayPay, getUser } from 'react-dipay-web-sdk'
+import 'react-dipay-web-sdk/dist/index.css' // Import style in your Root file such as <App>
 
 const App = () => {
   const [open1, setOpen1] = useState(false);
