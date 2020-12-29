@@ -1,0 +1,123 @@
+@import "../../variable.scss";
+
+.phoneIcon {
+  margin-bottom: 25px;
+}
+
+.btnActivate {
+  margin-top: 24px;
+}
+
+.formGroup {
+  margin-bottom: 38px;
+
+  input {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.375;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: unset;
+    flex: 1 1 auto;
+    &:focus {
+      outline: unset;
+    }
+  }
+
+  p.formHelper {
+    text-align: left;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    color: #585858;
+  }
+
+  &.formGroupError .phoneNumberGroup {
+    border-color: $color-danger;
+  }
+
+  &.formGroupError .formHelper {
+    color: $color-danger;
+  }
+
+  .phoneNumberGroup {
+    border: 1px solid #e5e5ea;
+    border-radius: 4px;
+    padding: 8px 14px;
+    display: flex;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:focus-within {
+      border-color: $color-primary;
+      background-color: #fff;
+      border-color: #93c0fa;
+      outline: 0;
+      box-shadow: 0 0 0 3.2px rgba(25, 121, 245, 0.25);
+    }
+
+    .countryCode {
+      background-color: #efeff4;
+      border-radius: 4px;
+      padding: 10px 12px;
+      display: inline-flex;
+      align-items: center;
+      margin-right: 16px;
+      .code {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 24px;
+    input {
+      font-size: 14px;
+    }
+    p.formHelper {
+      font-size: 12px;
+    }
+    .phoneNumberGroup .countryCode {
+      font-size: 14px;
+    }
+  }
+}
+
+p.helperText {
+  font-size: 18px;
+  margin-bottom: 36px;
+}
+
+p.agreeText {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.btnLogin {
+  margin-bottom: 38px;
+}
+
+p.resendText {
+  margin-bottom: 0;
+}
+
+.btnVerifikasi {
+  margin-bottom: 26px;
+}
+
+@media (max-width: 576px) {
+  p.helperText {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .btnLogin {
+    margin-bottom: 24px;
+  }
+  p.agreeText {
+    font-size: 13px;
+  }
+  .accountInfo {
+    font-size: 12px;
+    color: $color-grey;
+  }
+  p.resendText {
+    font-size: 14px;
+  }
+}

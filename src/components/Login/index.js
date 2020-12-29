@@ -16,7 +16,7 @@ const Login = ({ preLogin, login, onSuccess, onClose }) => {
   const handleLoginDone = () => {
     if (typeof onClose === 'function') onClose();
   }
-  
+
   if (step === 1) {
     return <Intro onClick={() => setStep(2)} />
   } else if (step === 2) {

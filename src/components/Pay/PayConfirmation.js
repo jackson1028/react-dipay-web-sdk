@@ -1,5 +1,5 @@
 import React from 'react';
-import rootStyle from '../../dipay.module.css';
+import rootStyle from '../../dipay.module.scss';
 import styles from './pay.module.css';
 
 const currency = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });

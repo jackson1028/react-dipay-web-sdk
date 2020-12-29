@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import rootStyle from '../../dipay.module.css'
-import styles from './login.module.css'
+import rootStyle from '../../dipay.module.scss'
+import styles from './login.module.scss'
 import { IDFlag } from '../icons'
 import LoadingButton from '../LoadingButton';
 
@@ -45,7 +45,7 @@ const PreLogin = ({ onSuccess, preLogin, phoneNumber, setPhoneNumber }) => {
       const data = {
         phoneNumber: `+62${phoneNumber}`
       };
-      
+
       preLogin(data)
         .then((res) => {
           const status = res.statusCode;
@@ -92,7 +92,7 @@ const PreLogin = ({ onSuccess, preLogin, phoneNumber, setPhoneNumber }) => {
           }
         </div>
         <LoadingButton loading={process} className={`${rootStyle.btn} ${rootStyle.btnPrimary} ${styles.btnLogin}`}>Hubungkan</LoadingButton>
-        <p>belum memiliki akun Dipay?</p>
+        <p className={styles.accountInfo}>belum memiliki akun Dipay?</p>
         <a href="https://dipay.id/download" target="_blank" className={`${rootStyle.btn} ${rootStyle.btnOutlinePrimary}`}>Download & Daftar Sekarang</a>
       </form>
     </div>

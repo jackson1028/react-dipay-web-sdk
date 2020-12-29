@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../dipay.module.css'
+import styles from '../dipay.module.scss'
 
 export const Phone = ({ size = 160 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 160 160">

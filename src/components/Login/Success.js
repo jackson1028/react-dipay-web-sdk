@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
-import rootStyle from '../../dipay.module.css'
-import styles from './login.module.css'
+import React from 'react'
+import rootStyle from '../../dipay.module.scss'
+import styles from './login.module.scss'
 import { Check } from '../icons'
 
 const Success = ({ onClick }) => (

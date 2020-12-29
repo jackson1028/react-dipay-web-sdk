@@ -1,5 +1,5 @@
 import React from 'react'
-import rootStyle from '../dipay.module.css'
+import rootStyle from '../dipay.module.scss'
 
 const InvalidClient = ({ dev, onClick }) => (
   !dev

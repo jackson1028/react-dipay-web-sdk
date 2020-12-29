@@ -1,0 +1,273 @@
+@import "./variable.scss";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500&display=swap");
+
+.modalRoot {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.375;
+  color: $color-dark;
+
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: none;
+    background-color: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+    &.btn:hover {
+      text-decoration: none;
+    }
+  }
+
+  .modalBackdrop {
+    background-color: rgba(1, 17, 24, 0.75);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .modalBody {
+    width: 100%;
+    max-width: 568px;
+    position: relative;
+    padding: 0 14px;
+
+    .modalCloseBtn {
+      position: absolute;
+      right: 30px;
+      top: 16px;
+      background: unset;
+      border: unset;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+    }
+
+    .modalContent {
+      background-color: $color-white;
+      border-radius: 8px;
+      padding: 26px 26px;
+      text-align: center;
+
+      .modalTitle {
+        font-family: "Raleway", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .modalBody {
+      padding: 0;
+      max-width: none;
+      height: 100%;
+
+      .modalCloseBtn {
+        right: 16px;
+      }
+
+      .modalContent {
+        padding: 16px;
+        border-radius: 0;
+        height: 100%;
+
+        .modalTitle {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+  color: $color-dark;
+  display: block;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 16px 30px;
+  line-height: 1.4;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+
+  &.focus,
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.25);
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.65;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+.btnPrimary {
+  color: $color-white;
+  background-color: $color-primary;
+  border-color: $color-primary;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $color-white;
+    background-color: #0c65d8;
+    border-color: #0b5fcc;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    color: $color-white;
+    background-color: #0b5fcc;
+    border-color: #0b5abf;
+  }
+
+  &.focus,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(59, 139, 244, 0.5);
+  }
+}
+
+.btnOutlinePrimary {
+  color: $color-primary;
+  border-color: $color-primary;
+  &:hover {
+    color: $color-white;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+
+  &.focus,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.5);
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    color: $color-white;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+
+  &:not(:disabled):not(.disabled).active:focus,
+  &:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.5);
+  }
+}
+
+.btnLoading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  .btnProgressWrapper {
+    margin-right: 14px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.spinnerRoot {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  animation: spinnerRotate 1.4s linear infinite;
+  .spinnerSvg {
+    display: block;
+    .spinnerCircle {
+      animation: spinnerDash 1.4s ease-in-out infinite;
+      stroke: currentColor;
+      stroke-dasharray: 80px, 200px;
+      stroke-dashoffset: 0px;
+    }
+  }
+}
+
+@keyframes spinnerRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinnerDash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.fontWeightMedium {
+  font-weight: 500;
+}
+
+.textPrimary {
+  color: $color-primary;
+}
+
+.loadingRoot {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+}
+
+.checkIcon {
+  margin: 32px 0 22px;
+}
+
+.btnClose {
+  margin-top: 32px;
+}

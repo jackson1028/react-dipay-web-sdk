@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import styles from '../dipay.module.css'
+import styles from '../dipay.module.scss'
 import { Spinner } from './icons'
 
 const LoadingButton = ({ type = 'submit', className, disabled, loading, onClick, children }) => (

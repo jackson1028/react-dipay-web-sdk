@@ -18,7 +18,7 @@ const App = () => {
         console.log('Get User Error', err)
       })
   }, [])
-  
+
   return (
     <div>
       <button onClick={e => setOpen1(true)}>Activate Dipay</button>

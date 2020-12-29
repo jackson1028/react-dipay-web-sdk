@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styles from '../dipay.module.css'
+import styles from '../dipay.module.scss'
 import ReactDOM from 'react-dom'
 import { Transition } from 'react-transition-group';
 import { Close } from './icons';
@@ -52,9 +52,12 @@ const Modal = ({ in: inProp, onClose, children, unmountOnExit }) => {
         >
           <div className={styles.modalBackdrop} onClick={handleClose}></div>
           <div className={styles.modalBody}>
-            <button className={styles.modalCloseBtn} onClick={handleClose}>
-              <Close />
-            </button>
+            {
+              onClose &&
+              <button className={styles.modalCloseBtn} onClick={handleClose}>
+                <Close />
+              </button>
+            }
             <div className={styles.modalContent}>
               {children}
             </div>

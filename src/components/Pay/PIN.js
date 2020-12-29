@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import rootStyle from '../../dipay.module.css'
+import rootStyle from '../../dipay.module.scss'
 import styles from './pay.module.css'
 import PINInput from '../PINInput';
 import LoadingButton from '../LoadingButton';

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
-import rootStyle from '../../dipay.module.css'
-import styles from './login.module.css'
+import rootStyle from '../../dipay.module.scss'
+import styles from './login.module.scss'
 import { Phone } from '../icons'
 
 const Intro = ({ onClick }) => {
@@ -9,7 +9,7 @@ const Intro = ({ onClick }) => {
   useEffect(() => {
     btnRef.current.focus();
   }, [])
-  
+
   return (
     <div>
       <div className={styles.phoneIcon}>
