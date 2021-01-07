@@ -1,26 +1,26 @@
 # React Dipay Integration
 
-[![NPM](https://img.shields.io/npm/v/react-dipay.svg)](https://www.npmjs.com/package/react-dipay) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-dipay-web-sdk.svg)](https://www.npmjs.com/package/react-dipay-web-sdk) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Installation and usage
 
 Install with npm:
 ```bash
-npm install react-dipay
+npm install react-dipay-web-sdk
 ```
 
 Then import styles to your app:
 ```jsx
 // Import style in Root Component such as <App>
-import 'react-dipay/dist/index.css'
+import 'react-dipay-web-sdk/dist/index.css'
 ```
 
 ## Example
 
 ```jsx
 import React, { useState, useEffect } from 'react'
-import { DipayLogin, DipayPay, getUser } from 'react-dipay'
-import 'react-dipay/dist/index.css' // Import style in your Root file such as <App>
+import { DipayLogin, DipayPay, getUser } from 'react-dipay-web-sdk'
+import 'react-dipay-web-sdk/dist/index.css' // Import style in your Root file such as <App>
 
 const App = () => {
   const [open1, setOpen1] = useState(false);
@@ -74,6 +74,7 @@ export default App
 | `onClose` | `true` | `function` | Subscribe to close events
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
 | `dev` | `false` | `boolean` | Set development mode<br>Default `process.env.NODE_ENV` or `true`
+| `immediate` | `false` | `string (phoneNumber)` | Bypass prelogin step by set this input phone number
 
 ### `DipayPay` Props
 | Key | Required | Type | Description

@@ -45,7 +45,7 @@ const CheckCredential = ({ checkCredential, withUser, dev, onClose, children }) 
   )
 }
 
-export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSuccess }) => {
+export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSuccess, immediate, onImmediateError }) => {
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
     : process?.env?.NODE_ENV !== 'production';
@@ -103,6 +103,8 @@ export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSucce
           login={login}
           onClose={onClose}
           onSuccess={onSuccess}
+          immediate={immediate}
+          onImmediateError={onImmediateError}
         />
       </CheckCredential>
     </Modal>
