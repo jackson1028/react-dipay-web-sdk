@@ -6,7 +6,7 @@
 
 Install with npm:
 ```bash
-npm install react-dipay-web-sdk
+npm i react-dipay-web-sdk
 ```
 
 Then import styles to your app:
@@ -98,4 +98,4 @@ export default App
 
 ## License
 
-MIT © [hendra-foo](https://github.com/hendra-foo)
+MIT © [jackson1028](https://github.com/jackson1028)
