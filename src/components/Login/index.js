@@ -16,10 +16,6 @@ const Login = ({ preLogin, login, onSuccess, onClose, immediate, onImmediateErro
     setStep(4);
   }
 
-  const handleLoginDone = () => {
-    if (typeof onClose === 'function') onClose();
-  }
-
   const onClickIntro = () => {
     if (!immediate) return setStep(2)
 
@@ -30,7 +26,8 @@ const Login = ({ preLogin, login, onSuccess, onClose, immediate, onImmediateErro
         setImmediateLoading(false);
 
         if (status === 200) {
-          onSuccess()
+          setPhoneNumber(immediate.replace('+62', ''))
+          setStep(3)
         } else {
           onImmediateError(res.message)
           setIsImmediateError(true)
@@ -47,7 +44,7 @@ const Login = ({ preLogin, login, onSuccess, onClose, immediate, onImmediateErro
   } else if (step === 3) {
     return <OTP onSuccess={handleLoginSuccess} login={login} phoneNumber={phoneNumber} />
   } else if (step === 4) {
-    return <Success onClick={handleLoginDone} />
+    return <Success onClose={onClose} />
   } else {
     return null
   }
