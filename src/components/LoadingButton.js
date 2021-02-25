@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment } from 'react'
+import React, { forwardRef } from 'react'
 import styles from '../dipay.module.scss'
 import { Spinner } from './icons'
 

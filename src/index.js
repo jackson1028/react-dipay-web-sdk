@@ -5,6 +5,7 @@ import Pay from './components/Pay';
 import Loading from './components/Loading';
 import InvalidClient from './components/InvalidClient';
 import InvalidUser from './components/InvalidUser';
+import PropTypes from 'prop-types';
 
 const CheckCredential = ({ checkCredential, withUser, dev, onClose, children }) => {
   const [loading, setLoading] = useState(true);
@@ -111,6 +112,16 @@ export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSucce
   )
 }
 
+DipayLogin.propTypes = {
+  clientId: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func,
+  dev: PropTypes.bool,
+  immediate: PropTypes.string,
+  onImmediateError: PropTypes.func
+}
+
 export const DipayPay = ({ clientId, dev: overwriteDev, open, onClose, onSuccess, secretKey: userKey = "", productCode, amount }) => {
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
@@ -177,6 +188,17 @@ export const DipayPay = ({ clientId, dev: overwriteDev, open, onClose, onSuccess
       </CheckCredential>
     </Modal>
   )
+}
+
+DipayPay.propTypes = {
+  clientId: PropTypes.string.isRequired,
+  secretKey: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func,
+  productCode: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  dev: PropTypes.bool
 }
 
 export const getUser = (clientId, userKey = "", overwriteDev) => new Promise((resolve, reject) => {

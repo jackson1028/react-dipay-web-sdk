@@ -30,7 +30,7 @@ const PayConfirmation = ({ productCode, amount, fee, onClose, onNext }) => {
         <hr />
         <div className={styles.blockInfo}>
           <p className={rootStyle.fontWeightMedium}>Total Pembayaran</p>
-          <p className={rootStyle.fontWeightMedium}>{toIDR(amount + fee)}</p>
+          <p className={rootStyle.fontWeightMedium}>{toIDR(+amount + +fee)}</p>
         </div>
       </div>
       <button className={`${rootStyle.btn} ${rootStyle.btnPrimary}`} onClick={onNext}>Bayar</button>
