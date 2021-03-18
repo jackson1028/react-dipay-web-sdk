@@ -42,7 +42,7 @@ const Login = ({ preLogin, login, onSuccess, onClose, immediate, onImmediateErro
   } else if (step === 2) {
     return <PreLogin onSuccess={() => setStep(3)} preLogin={preLogin} phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
   } else if (step === 3) {
-    return <OTP onSuccess={handleLoginSuccess} login={login} phoneNumber={phoneNumber} />
+    return <OTP onSuccess={handleLoginSuccess} resendService={preLogin} login={login} phoneNumber={phoneNumber} />
   } else if (step === 4) {
     return <Success onClose={onClose} />
   } else {

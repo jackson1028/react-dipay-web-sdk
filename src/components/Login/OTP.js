@@ -5,11 +5,15 @@ import LoadingButton from '../LoadingButton';
 import OTPInput from '../OTPInput';
 
 const numberRegex = /^[0-9]*$/;
+const duration = 5
 
-const OTP = ({ onSuccess, login, phoneNumber }) => {
+const OTP = ({ onSuccess, login, phoneNumber, resendService }) => {
   const [OTP, setOTP] = useState("");
   const [error, setError] = useState();
   const [process, setProcess] = useState(false);
+  const [timer, setTimer] = useState(duration);
+  const [resending, setResending] = useState(false);
+  const [errorResend, setErrorResend] = useState('');
   const OTPRef = useRef(null);
 
   const validate = (val) => {
@@ -51,13 +55,45 @@ const OTP = ({ onSuccess, login, phoneNumber }) => {
     }
   }
 
+  const resend = () => {
+    setErrorResend('')
+    setResending(true)
+    const data = {
+      phoneNumber: `+62${phoneNumber}`
+    };
+
+    resendService(data)
+      .then(({ statusCode: status, message }) => {
+        if (status === 200) {
+          setTimer(duration)
+        } else {
+          setErrorResend(message)
+        }
+        setResending(false)
+      })
+  }
+
+  useEffect(() => {
+    const countDown = setInterval(() => {
+      if (timer) setTimer(prev => prev - 1)
+      else clearInterval(countDown)
+    }, 1000);
+    return () => {
+      clearInterval(countDown)
+    }
+  }, [timer])
+
   useEffect(() => {
     if (OTP.length >= 4) submitOTP()
   }, [OTP])
 
   return (
     <div>
-      <form onSubmit={submitOTP}>
+      <form className={styles.formOtp} onSubmit={submitOTP}>
+
+        {/* blocker */}
+        {resending && <div className={styles.blocker} />}
+
         <h2 className={rootStyle.modalTitle}>Masukkan Kode Verifikasi</h2>
         <p className={styles.helperText}>Kode verifikasi telah dikirimkan ke<br /><span className={rootStyle.fontWeightMedium}>{`+62${phoneNumber}`}</span></p>
         <OTPInput
@@ -69,7 +105,21 @@ const OTP = ({ onSuccess, login, phoneNumber }) => {
           ref={OTPRef}
         />
         <LoadingButton loading={process} className={`${rootStyle.btn} ${rootStyle.btnPrimary} ${styles.btnVerifikasi}`}>Verifikasi</LoadingButton>
-        <p className={styles.resendText}>Silahkan menunggu <span className={rootStyle.textPrimary}>30 detik</span> untuk mengirim ulang</p>
+        <p className={styles.resendText}>
+          {
+            timer > 0 ?
+              <span>Silahkan menunggu <span className={rootStyle.textPrimary}>{timer} detik</span> untuk mengirim ulang</span>
+              :
+              <span>
+                Tidak menerima kode?
+                <button type="button" className={`${rootStyle.btn} ${styles.resendBtn}`} onClick={resend}>Kirim ulang</button>
+              </span>
+          }
+        </p>
+        {
+          errorResend &&
+          <p className={styles.errorText}>{errorResend}</p>
+        }
       </form>
     </div>
   )

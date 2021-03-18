@@ -102,6 +102,40 @@ p.resendText {
   margin-bottom: 26px;
 }
 
+.formOtp {
+  position: relative;
+
+  .resendBtn {
+    display: inline-block;
+    width: auto;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    font-weight: 500;
+    color: $color-primary;
+    &:focus {
+      outline: 0;
+      box-shadow: unset;
+    }
+  }
+
+  .blocker {
+    position: absolute;
+    background-color: rgba($color-white, 0.4);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .errorText {
+    color: $color-danger;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 576px) {
   p.helperText {
     font-size: 14px;
