@@ -28,6 +28,7 @@ const App = () => {
         open={open1}
         onClose={() => setOpen1(false)}
         onSuccess={data => console.log('Response', data)}
+        identificationNumber={1234567890}
       />
       <DipayPay
         clientId={clientId}

@@ -6,7 +6,7 @@ import LoadingButton from '../LoadingButton';
 
 const numberRegex = /^[0-9]*$/;
 
-const PreLogin = ({ onSuccess, preLogin, phoneNumber, setPhoneNumber }) => {
+const PreLogin = ({ onSuccess, preLogin, phoneNumber, setPhoneNumber, identificationNumber }) => {
   const [error, setError] = useState();
   const [validated, setValidated] = useState(false);
   const [process, setProcess] = useState(false);
@@ -43,7 +43,8 @@ const PreLogin = ({ onSuccess, preLogin, phoneNumber, setPhoneNumber }) => {
     if (validate(phoneNumber)) {
       setProcess(true);
       const data = {
-        phoneNumber: `+62${phoneNumber}`
+        phoneNumber: `+62${phoneNumber}`,
+        identificationNumber: identificationNumber
       };
 
       preLogin(data)

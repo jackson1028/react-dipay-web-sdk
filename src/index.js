@@ -46,11 +46,11 @@ const CheckCredential = ({ checkCredential, withUser, dev, onClose, children }) 
   )
 }
 
-export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSuccess, immediate, onImmediateError }) => {
+export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSuccess, immediate, onImmediateError, identificationNumber }) => {
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
     : process?.env?.NODE_ENV !== 'production';
-  const endPoint = dev ? "https://development-app.mareco.id/api" : "https://app.dipay.id/api";
+  const endPoint = dev ? "http://192.168.88.78:5555/api" : "https://app.dipay.id/api";
 
   const checkCredential = async () => {
     const res = await fetch(`${endPoint}/integration/check-credential`, {
@@ -105,6 +105,7 @@ export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSucce
           onClose={onClose}
           onSuccess={onSuccess}
           immediate={immediate}
+          identificationNumber={identificationNumber}
           onImmediateError={onImmediateError}
         />
       </CheckCredential>
@@ -119,6 +120,7 @@ DipayLogin.propTypes = {
   onSuccess: PropTypes.func,
   dev: PropTypes.bool,
   immediate: PropTypes.string,
+  identificationNumber: PropTypes.string,
   onImmediateError: PropTypes.func
 }
 
@@ -126,7 +128,7 @@ export const DipayPay = ({ clientId, dev: overwriteDev, open, onClose, onSuccess
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
     : process?.env?.NODE_ENV !== 'production';
-  const endPoint = dev ? "https://development-app.mareco.id/api" : "https://app.dipay.id/api";
+  const endPoint = dev ? "http://192.168.88.78:5555/api" : "https://app.dipay.id/api";
 
   const checkCredential = async () => {
     const res = await fetch(`${endPoint}/integration/check-credential`, {
