@@ -44,6 +44,7 @@ const App = () => {
         clientId="{YOUR_CLIENT_ID}" // Contact us for your Client ID
         open={open1}
         onClose={() => setOpen1(false)}
+        identificationNumber={1234567890}
         onSuccess={data => console.log('Response', data)}
       />
       <DipayPay
@@ -73,6 +74,7 @@ export default App
 | `open` | `true` | `boolean` | Control whether the menu is open
 | `onClose` | `true` | `function` | Subscribe to close events
 | `onSuccess` | `false` | `function` | Subscribe to Login Success event
+| `identificationNumber` | `false` | `number` | Is optional for compare identification number from dipay
 | `dev` | `false` | `boolean` | Set development mode<br>Default `process.env.NODE_ENV` or `true`
 | `immediate` | `false` | `string (phoneNumber)` | Bypass prelogin step by set this input phone number
 
