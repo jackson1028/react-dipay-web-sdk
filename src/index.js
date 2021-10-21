@@ -50,7 +50,7 @@ export const DipayLogin = ({ clientId, dev: overwriteDev, open, onClose, onSucce
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
     : process?.env?.NODE_ENV !== 'production';
-  const endPoint = dev ? "http://192.168.88.78:5555/api" : "https://app.dipay.id/api";
+  const endPoint = dev ? "https://development-app.mareco.id/api" : "https://app.dipay.id/api";
 
   const checkCredential = async () => {
     const res = await fetch(`${endPoint}/integration/check-credential`, {
@@ -128,7 +128,7 @@ export const DipayPay = ({ clientId, dev: overwriteDev, open, onClose, onSuccess
   const dev = typeof overwriteDev === 'boolean'
     ? overwriteDev
     : process?.env?.NODE_ENV !== 'production';
-  const endPoint = dev ? "http://192.168.88.78:5555/api" : "https://app.dipay.id/api";
+  const endPoint = dev ? "https://development-app.mareco.id/api" : "https://app.dipay.id/api";
 
   const checkCredential = async () => {
     const res = await fetch(`${endPoint}/integration/check-credential`, {
